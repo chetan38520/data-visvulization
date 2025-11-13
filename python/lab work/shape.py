@@ -64,7 +64,7 @@ class Cube:
 
 
 # --------------------- CUBOID CLASS ---------------------
-class Cubiod:
+class Cuboid:
     # Constructor: initializes length, breadth, and height
     def __init__(self, l, b, h):
         self.l = l
@@ -101,5 +101,6 @@ class Sphere:
     # Function to calculate Volume
     def claculate_total_volume(self):
         return (4 / 3) * PI * self.r**3
+
 
 
