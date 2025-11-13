@@ -1,7 +1,7 @@
 # ---------------------------------------------------------------
 
 # Import all shape classes from the shape module
-from shape import Cylinder, Cone, Cube, Cubiod, Sphere
+from shape import Cylinder, Cone, Cube, Cuboid, Sphere
 
 
 # ----------------------------- MAIN FUNCTION -----------------------------
@@ -53,7 +53,7 @@ def main():
             l = float(input("Enter length: "))
             b = float(input("Enter breadth: "))
             h = float(input("Enter height: "))
-            obj = Cubiod(l, b, h)
+            obj = Cuboid(l, b, h)
 
         elif choice == 5:
             # Sphere requires only radius
@@ -97,3 +97,4 @@ def main():
 # is executed directly, not when imported as a module.
 if __name__ == "__main__":
     main()
+
