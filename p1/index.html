@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Like / Dislike Test (No Auth)</title>
+  <style>
+    body { font-family: Arial; }
+    .post {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin: 10px 0;
+    }
+    button {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Posts</h2>
+
+<button onclick="getPosts()">Load Posts</button>
+
+<hr>
+
+<div id="posts"></div>
+
+<script>
+  const BASE_URL = "http://127.0.0.1:8000/api";
+
+  // 1️⃣ GET POSTS (NO AUTH)
+  function getPosts() {
+    fetch(`${BASE_URL}/post/`)
+      .then(res => res.json())
+      .then(data => {
+        const div = document.getElementById("posts");
+        div.innerHTML = "";
+
+        data.data.forEach(post => {
+          div.innerHTML += `
+            <div class="post">
+              <p><b>Post:</b> ${post.description}</p>
+
+              <button onclick="likePost(${post.id}, 'like')">
+                👍 Like (${post.likes_count})
+              </button>
+
+              <button onclick="likePost(${post.id}, 'dislike')">
+                👎 Dislike (${post.dislikes_count})
+              </button>
+            </div>
+          `;
+        });
+      })
+      .catch(() => alert("Error loading posts"));
+  }
+
+  // 2️⃣ LIKE / DISLIKE (NO AUTH)
+  function likePost(postId, action) {
+    fetch(`${BASE_URL}/post/${postId}/like/`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ action: action })
+    })
+    .then(res => res.json())
+    .then(data => {
+      alert(data.message);
+      getPosts();
+    })
+    .catch(() => alert("Error liking post"));
+  }
+</script>
+
+</body>
+</html>
