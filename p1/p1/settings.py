@@ -139,9 +139,9 @@ AUTH_USER_MODEL = 'api.UserProfile'
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),   # access token 5 minutes ke liye valid
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),     # refresh token 1 din ke liye valid
-    'ROTATE_REFRESH_TOKENS': True,                  # optional, refresh karne par new token generate kare
-    'BLACKLIST_AFTER_ROTATION': True,               # optional, purana refresh token invalid ho jaye
+    'REFRESH_TOKEN_LIFETIME': timedelta(days = 1),# refresh token 1 din ke liye valid
+    'ROTATE_REFRESH_TOKENS': True,                   # optional, refresh karne par new token generate kare
+    'BLACKLIST_AFTER_ROTATION': True,                # optional, purana refresh token invalid ho jaye
 }
 
 CORS_ALLOWED_ORIGINS = [

@@ -29,12 +29,12 @@ class UserProfileView(APIView):  # user profile view
     permission_classes = [IsAuthenticated]     #  if user is login then user perform crud operations
 
 #------------------get all the user profile if the user is authenticated-----------------------------------    
-    def get(self, request):  
+    def get(self, request, pk):  
         # Get all user profiles
-        users = UserProfile.objects.all()
+        users = UserProfile.objects.get(pk=pk)
         
         # Serialize the queryset (many=True because it's multiple objects)
-        serializer = UserProfileSerializer(users, many=True)
+        serializer = UserProfileSerializer(users)
         
         # Return serialized data in the response
         return Response({
@@ -47,7 +47,7 @@ class UserProfileView(APIView):  # user profile view
     
     
 #-----------------user can update our profile----------------------------------------------------------------    
-    def patch(self, request):
+    def put(self, request):
         user = request.user  #  provide user profile 
         serializer = UserProfileSerializer(
             user, data=request.data, partial=True  # in this serializer user is a old data and request.data is a updated data that comes from client side

@@ -125,7 +125,8 @@ from .models import Post, PostImage
 class PostSerializer(serializers.ModelSerializer):
     likes_count = serializers.SerializerMethodField()
     dislikes_count = serializers.SerializerMethodField()
-    images = PostImageSerializer(many=True, read_only=True)  
+    images = PostImageSerializer(many=True, read_only=True) 
+    user = UserProfileSerializer(read_only=True) 
     class Meta:
         model = Post
         fields = [
